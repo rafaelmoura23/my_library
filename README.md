@@ -1,2 +1,2 @@
 # my_library
-my libray in python
+my library in python
