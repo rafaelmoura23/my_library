@@ -1,6 +1,6 @@
-# My Library
+# My Library 📖
 
-- This repository contains a project developed in Python using Streamlit and PostgreSQL to register books and view books. This project was created to manage the books in my private library and is currently only available locally.
+- This repository contains a project developed in Python using Streamlit and PostgreSQL to register and view books. This project was created to manage the books in my private library and is currently only available locally.
 
 - **Book Registration:** Add new books to the library with information such as title, author, pages, and image.
 - **Book View:** View the list of registered books.
@@ -35,3 +35,8 @@ my_library/
 ├── view.py (empty)
 └── README.md
 ```
+<h4 align="center">
+    <b>A dúvida é o princípio da sabedoria - Aristóteles</b>
+</h4>
+
+
