@@ -5,6 +5,7 @@ import io
 
 from connection_db import get_connection
 
+# connection = get_connection() # Melhor prática?
 
 def cadastrar_livro():
     st.title("Cadastro de Livros")
@@ -17,21 +18,20 @@ def cadastrar_livro():
 
     if st.button("Cadastrar"):
         if nome and autor and ano and paginas and imagem:
-            # Converte a imagem para um formato apropriado
             image = Image.open(imagem)
             img_byte_arr = io.BytesIO()
             image.save(img_byte_arr, format=image.format)
             img_byte_arr = img_byte_arr.getvalue()
 
-            conn = get_connection()
-            cursor = conn.cursor()
+            connection = get_connection()
+            cursor = connection.cursor()
             cursor.execute(
                 "INSERT INTO livros (nome, autor, ano, paginas, imagem) VALUES (%s, %s, %s, %s, %s)",
                 (nome, autor, ano, paginas, img_byte_arr)
             )
-            conn.commit()
+            connection.commit()
             cursor.close()
-            conn.close()
+            connection.close()
             st.success("Livro cadastrado com sucesso!")
         else:
             st.error("Por favor, preencha todos os campos.")
@@ -39,14 +39,14 @@ def cadastrar_livro():
 def visualizar_livros():
     st.title("Livros Cadastrados")
 
-    conn = get_connection()
-    cursor = conn.cursor()
+    connection = get_connection()
+    cursor = connection.cursor()
     cursor.execute("SELECT nome, autor, ano, paginas, imagem FROM livros")
     livros = cursor.fetchall()
     cursor.close()
-    conn.close()
+    connection.close()
 
-    # Define o CSS para os cards
+    # CSS para os cards (ajustar 4 colunas por linha)
     st.markdown("""
         <style>
         .card {
@@ -91,10 +91,10 @@ def visualizar_livros():
         """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    st.sidebar.title("Menu")
-    escolha = st.sidebar.selectbox("Escolha uma página", ["Visualizar Livros", "Cadastrar Livro"])
+    st.sidebar.title("Options")
+    escolha = st.sidebar.selectbox("Escolha uma página", ["Livros", "Cadastrar Livro"])
 
-    if escolha == "Visualizar Livros":
+    if escolha == "Livros":
         visualizar_livros()
     elif escolha == "Cadastrar Livro":
         cadastrar_livro()
