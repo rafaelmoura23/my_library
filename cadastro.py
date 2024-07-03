@@ -7,6 +7,7 @@ from connection_db import get_connection
 
 # connection = get_connection() # Melhor prática?
 
+# Cadastrar Livros no Banco de dados
 def cadastrar_livro():
     st.title("Cadastro de Livros")
 
@@ -36,6 +37,7 @@ def cadastrar_livro():
         else:
             st.error("Por favor, preencha todos os campos.")
 
+# Visualizar os livros Cadastrados
 def visualizar_livros():
     st.title("Livros Cadastrados")
 
